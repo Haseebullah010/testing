@@ -1,0 +1,12 @@
+version: "3.1"
+
+nlu:
+- intent: wellcome
+  examples: |
+    - wellcome
+    - Hello
+
+- intent: show_symptom_menu
+  examples: |
+    - show menu
+    - symptom menu

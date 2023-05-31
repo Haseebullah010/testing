@@ -1,0 +1,337 @@
+version: "3.1"
+
+rules:
+
+############ medibot flow for telegram ##################
+- rule : Say 'telegram details'
+  steps:
+  - intent: start start
+  - action: check_latest_message_MedDetails
+  - action: med_details_form
+  - active_loop: med_details_form
+
+- rule: Submit med_details_form
+  condition:
+  - active_loop: med_details_form
+  steps:
+    - action: med_details_form
+    - active_loop: null
+    - slot_was_set: 
+      - required_slot: null
+    - action : action_submit_med_details_form
+
+
+
+- rule: Start symptom
+  steps:
+  - intent: ask_sympt
+  - action: utter_wellcome
+  # - action: utter_show_symptom_menu
+
+
+- rule: Start appointment
+  steps:
+  - intent: ask_appoint
+  - action: utter_ask_option_doctor_date
+  # - action: utter_select_date
+
+- rule: Start symptom again
+  steps:
+  - intent: check_sympt_yes
+  - action: utter_wellcome
+
+- rule: Thanks after appointment
+  steps:
+  - intent: check_sympt_no
+  - action: utter_thanks_after_appointment
+
+- rule: wellcome
+  steps:
+  - intent: wellcome
+  - action: utter_start
+  
+
+- rule: check web login
+  steps:
+  - intent: check_web_login
+  - action: action_check_web_login
+  
+- rule: reset OTP
+  steps:
+  - intent: reset_otp
+  - action: action_reset_otp
+  
+- rule: ask option doctor date
+  steps:
+  - intent: ask_option_doctor_date
+  - action: utter_ask_option_doctor_date
+
+- rule: select doctor
+  steps:
+  - intent: select_doctor
+  - action: action_select_doctor
+
+- rule: select date
+  steps:
+  - intent: select_date
+  - action: utter_select_date
+  
+- rule: show time
+  steps:
+  - intent: show_time
+  - action: action_show_time
+ 
+
+- rule: select time
+  steps:
+  - intent: select_time
+  - action: action_submit_appointment
+
+- rule: add feedback
+  steps:
+  - intent: submit_feedback
+  - action: action_submit_feedback
+  
+- rule: ask feedback
+  steps:
+  - intent: ask_feedback
+  - action: action_feedback
+
+
+# begin NH patients #
+
+- rule: wellcome NH patients
+  steps:
+  - intent: welcome_NH_patients
+  - action: utter_wellcome_NH_patients
+
+  
+
+- rule: ask NH age
+  steps:
+  - intent: NH_select_symptom
+  - action: utter_ask_NH_age
+
+- rule: submit NH age
+  steps:
+  - intent: submit_NH_age
+  - action: utter_ask_NH_patients_howlong
+
+- rule: submit NH symptom duration
+  steps:
+  - intent: submit_NH_patients_duration
+  - action: utter_ask_NH_organ_disorder
+
+- rule: submit NH organ_disorder
+  steps:
+  - intent: NH_select_organ_disorder
+  - action: utter_ask_NH_patients_qn_set1
+
+- rule: submit NH patients_qn_set1
+  steps:
+  - intent: ask_NH_patients_QNset1
+  - action: utter_ask_NH_patients_qn_set2
+
+- rule: submit NH patients_qn_set2
+  steps:
+  - intent: ask_NH_patients_QNset2
+  - action: utter_ask_NH_patients_qn_set3
+
+# Begin Biological Age
+- rule: ask_biological_age
+  steps:
+  - intent: ask_biological_age
+  - action: utter_ask_biological_age
+
+- rule : Get age
+  steps:
+  - intent: ask_biological_BMI
+  - action: utter_ask_age
+
+
+- rule: ask_biological_BMI
+  steps:
+  - intent: submit_age
+  - action: utter_ask_biological_bmi
+
+# End Biological Age
+ 
+# Begin Gastroenterology
+- rule: ask_abdomen
+  steps:
+  - intent: ask_abdomen
+  - action: utter_ask_abdomen
+  
+- rule: ask nausea
+  steps:
+  - intent: ask_nausea
+  - action: utter_ask_nausea
+
+- rule: ask gastroenterology howlong
+  steps:
+  - intent: ask_gastroenterology_howlong
+  - action: utter_ask_gastroenterology_howlong
+  
+- rule: ask heartburn
+  steps:
+  - intent: ask_heartburn
+  - action: utter_ask_heartburn
+
+- rule: ask gastroenterology bmi
+  steps:
+  - intent: ask_gastroenterology_bmi
+  - action: utter_ask_gastroenterology_bmi
+
+- rule: ask gastroenterology ID3
+  steps:
+  - intent: ask_gastroenterology_ID3
+  - action: utter_ask_gastroenterology_ID3
+# End Gastroenterology
+
+# Begin Depression
+- rule: check interesting
+  steps:
+  - intent: ask_depression
+  - action: utter_ask_no_interesting
+
+- rule: ask falling asleep
+  steps:
+  - intent: ask_falling_asleep
+  - action: utter_ask_falling_asleep
+
+# - rule: ask overeating
+#   steps:
+#   - intent: ask_overeating
+#   - action: utter_ask_overeating
+
+- rule: ask trouble concentrating
+  steps:
+  - intent: ask_trouble_concentrating
+  - action: utter_ask_trouble_concentrating
+# End Depression
+  
+# Begin Anxiety
+- rule: check anxiety
+  steps:
+  - intent: ask_anxiety
+  - action: utter_ask_felt_nervous
+
+- rule: ask worried things
+  steps:
+  - intent: ask_worried_things
+  - action: utter_ask_worried_things
+
+- rule: ask felt= restless
+  steps:
+  - intent: ask_felt_restless
+  - action: utter_ask_felt_restless
+# End Anxiety
+
+# Begin chest pain
+- rule: ask pain location
+  steps:
+  - intent: ask_chestpain_location
+  - action: utter_ask_chestpain_location
+
+- rule: ask chestpain concerns
+  steps:
+  - intent: ask_chestpain_concerns
+  - action: utter_ask_chestpain_concerns
+
+- rule: ask chestpain howlong
+  steps:
+  - intent: ask_chestpain_howlong
+  - action: utter_ask_chestpain_howlong
+
+- rule: ask chestpain ID3
+  steps:
+  - intent: ask_chestpain_ID3
+  - action: utter_ask_chestpain_ID3
+# End chest pain
+
+# Begin Respiratory
+- rule: ask respiratory
+  steps:
+  - intent: ask_respiratory
+  - action: utter_ask_respiratory
+
+- rule: ask howlong
+  steps:
+  - intent: ask_respiratory_howlong
+  - action: utter_ask_respiratory_howlong
+
+- rule: ask respiratory_ID3
+  steps:
+  - intent: ask_respiratory_ID3
+  - action: utter_ask_respiratory_ID3
+
+- rule: ask bmi
+  steps:
+  - intent: ask_respiratory_bmi
+  - action: utter_ask_respiratory_bmi
+# End Respiratory
+
+# Begin Fever
+- rule: ask fever
+  steps:
+  - intent: ask_fever
+  - action: utter_ask_fever
+
+- rule: ask fever1
+  steps:
+  - intent: ask_fever1
+  - action: utter_ask_fever1
+  
+- rule: ask fever howlong
+  steps:
+  - intent: ask_fever_howlong
+  - action: utter_ask_fever_howlong
+  
+- rule: ask fever bmi
+  steps:
+  - intent: ask_fever_bmi
+  - action: utter_ask_fever_bmi
+
+- rule: ask fever ID3
+  steps:
+  - intent: ask_fever_ID3
+  - action: utter_ask_fever_ID3
+# End Fever
+
+# Begin Diabetes Check
+- rule: ask diabetes
+  steps:
+  - intent: ask_diabetes
+  - action: utter_ask_diabetes
+
+- rule: ask origin
+  steps:
+  - intent: ask_origin
+  - action: utter_ask_origin
+
+- rule: ask waist
+  steps:
+  - intent: ask_waist
+  - action: utter_ask_waist
+# End Diabetes Check
+
+# Begin CVD Risk
+- rule: check cvd risk
+  steps:
+  - intent: ask_cvd_risk
+  - action: utter_ask_cvd_risk
+# End CVD Risk
+
+# Begin Diet analysis
+- rule: upload image diet
+  steps:
+  - intent: ask_diet
+  - action: utter_ask_diet
+# End Diet analysis
+
+# Begin Skin disease identification
+- rule: Skin disease identification
+  steps:
+  - intent: ask_skin
+  - action: utter_ask_skin
+# End Skin disease identification

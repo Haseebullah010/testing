@@ -1,0 +1,372 @@
+version: "3.1"
+
+stories:
+
+
+
+- story: submit user info
+  steps:
+  - intent: submit_user_info
+  - action: action_submit_user_info
+  - action: utter_ask_otp
+
+- story: check otp
+  steps:
+   - intent: check_otp
+   - action: action_check_otp
+   - slot_was_set:
+     - otp_valid: true
+   - action: action_show_result
+
+- story: check otp
+  steps:
+   - intent: check_otp
+   - action: action_check_otp
+   - slot_was_set:
+     - otp_valid: false
+   - action: utter_ask_otp
+
+ #Begin NH patients 
+
+- story: ask NH_patients
+  steps:
+  - intent: ask_NH_patients
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  - action: utter_ask_NH_patients
+
+# - story: ask NH_patients
+#   steps:
+#   - intent: ask_NH_patients
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: false
+#   - action: utter_ask_user_info
+
+- story: submit NH patients QNset3
+  steps:
+  - intent: ask_NH_patients_QNset3
+  - action: action_submit_NH_patients
+ 
+
+- story: submit NH_chestPain_qn_set1
+  steps:
+  - intent: ask_NH_chestPain_qn_set1
+  - action: action_submit_NH_patients_data
+  - action: action_show_result
+
+  
+  
+# Begin Biological Age
+- story: submit biological age 1
+  steps:
+  - intent: submit_biological_age
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: false
+  # - action: utter_ask_otp
+  - action: action_submit_biological_age
+
+- story: submit biological age 2
+  steps:
+  - intent: submit_biological_age
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: true
+  - action: action_submit_biological_age
+  - action: action_show_result
+  
+- story: submit biological age 3
+  steps:
+  - intent: submit_biological_age
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: false
+  # - action: utter_ask_user_info
+  - action: action_submit_biological_age
+# End Biological Age
+
+# Begin Anxiety
+- story: submit anxiety 1
+  steps:
+  # - intent: submit_anxiety
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: false
+  # - action: utter_ask_otp
+  # - action: action_submit_anxiety
+
+- story: submit anxiety 2
+  steps:
+  - intent: submit_anxiety
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: true
+  - action: action_submit_anxiety
+  - action: action_show_result
+  
+# - story: submit anxiety 3
+#   steps:
+#   - intent: submit_anxiety
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: false
+#   - action: utter_ask_user_info
+#   - action: action_submit_anxiety
+# End Anxiety
+
+# Begin Depression
+
+# - story: submit_depression 1
+#   steps:
+#   - intent: submit_depression
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: true
+#      - otp_valid: false
+#   - action: utter_ask_otp
+#   - action: action_submit_depression
+
+- story: submit_depression 2
+  steps:
+  - intent: submit_depression
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: true
+  - action: action_submit_depression
+  - action: action_show_result
+  
+# - story: submit_depression 3
+#   steps:
+#   - intent: submit_depression
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: false
+#   - action: utter_ask_user_info
+#   - action: action_submit_depression
+
+# End Depression
+
+# Begin Respiratory
+# - story: submit respiratory 1
+#   steps:
+#   - intent: submit_respiratory
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: true
+#      - otp_valid: false
+#   - action: utter_ask_otp
+#   - action: action_submit_respiratory
+
+- story: submit respiratory 2
+  steps:
+  - intent: submit_respiratory
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: true
+  - action: action_submit_respiratory
+  - action: action_show_result
+
+# - story: submit respiratory 3
+#   steps:
+#   - intent: submit_respiratory
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: false
+#   - action: utter_ask_user_info
+#   - action: action_submit_respiratory
+# End Respiratory
+
+# Begin Chest pain
+# - story: submit chestpain 1
+#   steps:
+#   - intent: submit_chestpain
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: true
+#      - otp_valid: false
+#   - action: utter_ask_otp
+#   - action: action_submit_chestpain
+  
+- story: submit chestpain 2
+  steps:
+  - intent: submit_chestpain
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: true
+  - action: action_submit_chestpain
+  - action: action_show_result
+
+# - story: submit chestpain 3
+#   steps:
+#   - intent: submit_chestpain
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: false  
+#   - action: utter_ask_user_info
+#   - action: action_submit_chestpain
+# End Chest pain
+
+# Begin Diabetes Check
+# - story: submit diabetes 1
+#   steps:
+#   - intent: submit_diabetes
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: true
+#      - otp_valid: false
+#   - action: utter_ask_otp
+#   - action: action_submit_diabetes
+  
+- story: submit diabetes 2
+  steps:
+  - intent: submit_diabetes
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: true
+  - action: action_submit_diabetes
+  - action: action_show_result
+
+# - story: submit diabetes 3
+#   steps:
+#   - intent: submit_diabetes
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: false
+#   - action: utter_ask_user_info
+#   - action: action_submit_diabetes
+# End Diabetes Check
+
+# Begin CVD Risk
+# - story: submit cvd risk 1
+#   steps:
+#   - intent: submit_cvd_risk
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: true
+#      - otp_valid: false
+#   - action: utter_ask_otp
+#   - action: action_submit_cvd_risk
+  
+- story: submit cvd risk 2
+  steps:
+  - intent: submit_cvd_risk
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: true
+  - action: action_submit_cvd_risk
+  - action: action_show_result
+
+# - story: submit cvd risk 3
+#   steps:
+#   - intent: submit_cvd_risk
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: false
+#   - action: utter_ask_user_info
+#   - action: action_submit_cvd_risk
+# End CVD Risk
+
+# Begin Fever
+- story: abdominal pain
+  steps:
+  - intent: submit_concerns
+  - action: action_check_abdominal_pain
+  - slot_was_set:
+    - abdominal_pain: true
+  - action: utter_fever_body
+
+- story: not abdominal pain
+  steps:
+  - intent: submit_concerns
+  - action: action_check_abdominal_pain
+  - slot_was_set:
+    - abdominal_pain: false
+  - action: utter_ask_fever1
+  
+# - story: submit fever 1
+#   steps:
+#   - intent: submit_fever
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: true
+#      - otp_valid: false
+#   - action: utter_ask_otp
+#   - action: action_submit_fever
+
+- story: submit_fever
+  steps:
+  - intent: submit_fever
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: true
+  - action: action_submit_fever
+  - action: action_show_result
+
+# - story: submit_fever 3
+#   steps:
+#   - intent: submit_fever
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: false
+#   - action: utter_ask_user_info
+#   - action: action_submit_fever
+# End Fever
+
+# Begin Gastroenterology
+- story: Has abdomen
+  steps:
+  - intent: check_abdomen
+  - action: action_check_abdomen
+  - slot_was_set:
+    - has_abdomen: true
+  - action: utter_ask_gastroenterology_body
+
+- story: not has abdomen
+  steps:
+  - intent: check_abdomen
+  - action: action_check_abdomen
+  - slot_was_set:
+    - has_abdomen: false
+  - action: utter_ask_heartburn
+
+# - story: submit gastroenterology 1
+#   steps:
+#   - intent: submit_gastroenterology
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: true
+#      - otp_valid: false
+#   - action: utter_ask_otp
+#   - action: action_submit_gastroenterology
+  
+- story: submit gastroenterology 2
+  steps:
+  - intent: submit_gastroenterology
+  # - action: action_check_login
+  # - slot_was_set:
+  #    - is_login: true
+  #    - otp_valid: true
+  - action: action_submit_gastroenterology
+  - action: action_show_result
+
+# - story: submit gastroenterology 3
+#   steps:
+#   - intent: submit_gastroenterology
+#   - action: action_check_login
+#   - slot_was_set:
+#      - is_login: false  
+#   - action: utter_ask_user_info
+#   - action: action_submit_gastroenterology
+# End Gastroenterology
